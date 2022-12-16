@@ -1,7 +1,6 @@
 import './style.css'
 
-console.log("hola mudo")
+import {App} from './src/todo/app'
 
 
-
-console.log("hi ")
+App ("#app");
