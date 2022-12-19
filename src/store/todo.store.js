@@ -1,6 +1,11 @@
 import { Todo } from "../todo/model/todos";
-const Filter = {
-  ALL: "all",
+
+
+
+
+
+export const Filters = {
+  All: "all",
   Completed: "completed",
   Pending: "Pending",
 };
@@ -10,32 +15,36 @@ const state = {
     new Todo("piedra del infinito "),
     new Todo("piedra del alam "),
     new Todo("piedra del tiempo  "),
+    new Todo("Piedra de la realidad"),
   ],
 
-  Filter: Filter.ALL,
+  filter: Filters.All,
 };
 
-const initStore = () => {
-  console.log(state);
-
-  console.log("inisotre ");
+const initStore = () => { 
+  loadStore();
+  console.log('initstorere')
+  
 };
 
 const loadStore = () => {
-  throw new Error("not implemeted");
+  if (!localStorage.getItem('satete') )
+  return
 };
 
-const getTodos = (filter = Filter.ALL) => {
-  switch (Filter) {
-    case Filter.ALL:
+const getTodos = (filter = Filters.All) => {
+  switch (filter) {
+    case Filters.All:
       return [...state.todos];
-    case Filter.Completed:
+    case filter.Completed:
       return state.todos.filter((todo) => todo.done);
-    case Filter.Pending:
+    case Filters.Pending:
       return state.todos.filter((todo) => !todo.done);
 
-    default:
-      throw new Error(`option ${filter} is not valid `);
+      default:
+        throw new Error (`option ${filter}in not valid `)
+
+   
   }
 };
 const addTodo = (description) => {
@@ -52,19 +61,19 @@ const toggleTodo = (todoId) => {
   });
 };
 
-const deleteTodo = (todoid) => {
-  state.todos = state.todos.filter((todo) => todo.id !== todoid);
+const deleteTodo = (todoId) => {
+  state.todos = state.todos.filter((todo) => todo.id !== todoId);
 };
 
 const deleteCompled = () => {
   state.todos = state.todos.filter((todo) => todo.done);
 };
-const setFilter = (newFilter = Filter.ALL) => {
-  state.Filter = newFilter;
+const setFilter = (newFilter = Filters.All) => {
+  state.filter = newFilter;
 };
 
 const getCurretFilter = () => {
-  return state.Filter;
+  return state.filter;
 };
 
 export default {
@@ -77,4 +86,6 @@ export default {
   loadStore,
   getTodos,
   deleteCompled,
+  
+  
 };
