@@ -38,24 +38,33 @@ const getTodos = (filter = Filter.ALL) => {
       throw new Error(`option ${filter} is not valid `);
   }
 };
-const addTodo = (todo) => {
-  throw new Error("not implemeted");
+const addTodo = (description) => {
+  if (!description) throw new Error("no description");
+
+  state.todos.push(new Todo(description));
 };
 
-const toggleTodo = (todoid) => {
-  throw new Error("not implemeted");
+const toggleTodo = (todoId) => {
+  state.todos = state.todos.map((todo) => {
+    if (todo.id === todoId) todo.done = !todo.done;
+
+    return todo;
+  });
 };
 
 const deleteTodo = (todoid) => {
-  throw new Error("not implemeted");
+  state.todos = state.todos.filter((todo) => todo.id !== todoid);
 };
 
+const deleteCompled = () => {
+  state.todos = state.todos.filter((todo) => todo.done);
+};
 const setFilter = (newFilter = Filter.ALL) => {
-  throw new Error("not implemeted");
+  state.Filter = newFilter;
 };
 
 const getCurretFilter = () => {
-  throw new Error("not implemeted");
+  return state.Filter;
 };
 
 export default {
@@ -67,4 +76,5 @@ export default {
   addTodo,
   loadStore,
   getTodos,
+  deleteCompled,
 };
