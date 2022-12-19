@@ -25,8 +25,18 @@ const loadStore = () => {
   throw new Error("not implemeted");
 };
 
-const getTodos = (Filter) => {
-  throw new Error("not implemeted");
+const getTodos = (filter = Filter.ALL) => {
+  switch (Filter) {
+    case Filter.ALL:
+      return [...state.todos];
+    case Filter.Completed:
+      return state.todos.filter((todo) => todo.done);
+    case Filter.Pending:
+      return state.todos.filter((todo) => !todo.done);
+
+    default:
+      throw new Error(`option ${filter} is not valid `);
+  }
 };
 const addTodo = (todo) => {
   throw new Error("not implemeted");
