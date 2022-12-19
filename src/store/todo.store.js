@@ -20,7 +20,7 @@ const state = {
 
 const initStore = () => {
     loadStore();
-    console.log('InitStore 🥑');
+    
 }
 
 const loadStore = () => {
